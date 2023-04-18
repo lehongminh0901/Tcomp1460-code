@@ -1,0 +1,54 @@
+﻿@model IEnumerable<tcomp1.Models.Like_Idea>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Like)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisLike)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Idea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tcomp1User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Like)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisLike)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Idea.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tcomp1User.Id)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Idea.Id">Edit</a> |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    <a asp-action="Delete" asp-route-id="@item.Idea.Id">Delete</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

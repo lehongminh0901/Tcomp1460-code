@@ -1,0 +1,88 @@
+﻿@model tcomp1.Models.Idea
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Idea</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.mess != null)
+            {
+                <div id="msgAlert" class="alert alert-danger" role="alert">
+                    @ViewBag.mess
+
+                </div>
+            }
+            
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripstion" class="control-label"></label>
+                <input asp-for="Descripstion" class="form-control" />
+                <span asp-validation-for="Descripstion" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="CloseTime" class="control-label"></label>
+                <input asp-for="CloseTime" class="form-control" />
+                <span asp-validation-for="CloseTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Incognito" class="control-label"></label>
+                <select asp-for="Incognito" class="form-control">
+                    <option value="Incognito">Incognito</option>
+                    <option value="Public"> Public</option>
+                    
+                    </select>
+                <span asp-validation-for="Incognito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input type="file" class="form-control" name="Img" />
+
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">File</label>
+                <input type="file" class="form-control" name="File" />
+
+                <span asp-validation-for="Fileurl" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" id="rulesCbx" asp-for="Rules" /> @Html.DisplayNameFor(model => model.Rules)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCategory" class="control-label"></label>
+                <select asp-for="IdCategory" class="form-control" asp-items="ViewBag.IdCategory"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdAdemic" class="control-label"></label>
+                <select asp-for="IdAdemic" class="form-control" asp-items="ViewBag.IdAdemic"></select>
+            </div>
+            
+            <div class="form-group">
+                <button id="createbtn" value="Create" class="btn btn-primary" <span>Submit</span> </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

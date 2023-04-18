@@ -1,0 +1,105 @@
+﻿@model IEnumerable<tcomp1.Models.Idea>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1> </h1>
+
+<p> Name : @ViewBag.Name</p>
+<p>Start Date: @ViewBag.DateStart</p>
+<p>End Date: @ViewBag.Enddate</p>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripstion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CloseTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImgUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fileurl)
+                </th>
+                
+                
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Incognito)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Like)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisLike)
+                </th>
+               
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripstion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CloseTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImgUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fileurl)
+                    </td>
+                    
+                   
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Incognito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Like)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DisLike)
+                    </td>
+                   
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Chart">Chart</a>
+<br />
+<a asp-action="Chartcategory">Chartcategory</a>
+<br />
+<a asp-action="Percentage_of_ideas">Percentage_of_ideas</a>
+<br />
+<a asp-action="Number_of_contributors">Number_of_contributors</a>
+<br />
+<a asp-action="CSV">CSV</a>
+<br />
+    <a asp-action="Exception_reports">Exception_reports</a>
+

@@ -1,0 +1,42 @@
+﻿@model tcomp1.Models.Like_Idea
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Like_Idea</h4>
+    <hr />
+    <dl class="row">
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Like)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Like)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DisLike)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DisLike)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idea)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idea.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tcomp1User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tcomp1User.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

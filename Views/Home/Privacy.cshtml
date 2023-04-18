@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+
+    <link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+
+<body>
+
+    @*<div class="container">*@
+    <div class="row">
+        @*<body>
+
+        <div class="container">
+        <div class="row">*@
+        <!-- Blog entries-->
+        <div class="col-lg-8">
+            <!-- Featured blog post-->
+            
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        @if (ViewBag.idea.Incognito == "Public")
+                        {
+                            <h2 class="card-title"> Poster: @ViewBag.idea.tcomp1User.NameofUser</h2>
+                        }
+                    @if (ViewBag.idea.Incognito == "Incognito")
+                        {
+                            <h2 class="card-title">Poster: Incognito</h2>
+                        }
+                    <h2 class="card-title">@ViewBag.idea.Title</h2>
+                    <div class="small text-muted">@ViewBag.idea.DateTime</div>
+
+                    <p class="card-text">@ViewBag.idea.Descripstion</p>
+                    @if (ViewBag.idea.Fileurl != "null")
+                        {
+                        <a onclick="history.go(-1)" asp-controller="Ideas" asp-action="DownloadFile" asp-route-id="@ViewBag.idea.Fileurl">@ViewBag.idea.Fileurl</a>
+                        }
+
+                        <div class=" comment ">
+                        @if (ViewBag.idea.CloseTime > DateTime.Now)
+                            {
+                            <a class="com " id="like" onclick="history.go(-1)" asp-area="" asp-controller="Ideas" asp-action="CreateLike" asp-route-id="@ViewBag.idea.Id">
+                                <i class="fa-regular fa-thumbs-up">@ViewBag.idea.Like</i>
+                                </a>
+                            }
+                            @if (ViewBag.idea.Comments.Count >= 0)
+                            {
+                                var total = ViewBag.idea.Comments.Count;
+                            <a class="com" asp-controller="Comments" asp-action="Create" asp-route-id="@ViewBag.idea.Id">
+
+                                    <i class="fa-regular fa-comment"></i>@total
+                                </a>
+                            }
+                        @if (ViewBag.idea.CloseTime > DateTime.Now)
+                            {
+                            <a class="com" onclick="history.go(-1)" asp-controller="Ideas" asp-action="CreateDisLike" asp-route-id="@ViewBag.idea.Id">
+                                <i class="fa-regular fa-thumbs-down"> </i>@ViewBag.idea.DisLike
+                                </a>
+                            }
+                            
+                        </div>
+                    </div>
+                @if (ViewBag.idea.ImgUrl != "null")
+                    {
+                        <img class="img-fluid" alt="Wild Landscape" src="/Image/@ViewBag.idea.ImgUrl">
+                    }
+
+                </div>
+            
+            <!-- Nested row for non-featured blog posts-->
+            <!-- Pagination-->
+
+        </div>
+        <!-- Side widgets-->
+        @*</div>*@
+        @*</div>*@
+        <!-- Footer-->
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        @* </body>*@
+        <div class="col-lg-4">
+          <form asp-controller="Comments"  asp-action="Create" asp-route-id="@ViewBag.idea.Id">
+            <div class="card mb-4">
+                <div class="d-flex flex-start w-100">
+                    <img class="rounded-circle shadow-1-strong me-3"
+                         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
+                         height="40" />
+                    <div class="form-outline w-100">
+                        <textarea class="form-control" id="textAreaExample" rows="4"
+                                      style="background: #fff;" name="Descripstion"></textarea>
+                        <label class="form-label" for="textAreaExample">Message</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label for="Incognito" class="control-label"></label>
+                <select name="Incognito" class="form-control">
+                    
+                    <option value="Public"> Public</option>
+                    <option value="Incognito">Incognito</option>
+
+                </select>
+                <span for="Incognito" class="text-danger"></span>
+            </div>
+                <div class="float-end mt-2 pt-1">
+                        <button type="submit" value="Create" class="btn btn-primary btn-sm">Post comment</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                </div>
+               
+            </div>
+            </form>
+             
+            @for (var i = 0; i < @Model.Count; i++)
+            {
+                <div class="card mb-4">
+                    <div class="d-flex flex-start w-100">
+                        <div class="row">
+                            @if (Model[i].Incognito == "Public")
+                            {
+                                <p class="card-title"> Poster: @Model[i].tcomp1User.NameofUser</p>
+                            }
+                            @if (Model[i].Incognito == "Incognito")
+                            {
+                                <p class="card-title">Poster: Incognito</p>
+                            }
+                
+                <p>Date: @Model[i].DateTime</p>
+                        <p>Description: @Model[i].Descripstion</p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+           
+        </div>
+    @*</div>*@
+
+    @*</div>*@
+    <!-- Footer-->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
